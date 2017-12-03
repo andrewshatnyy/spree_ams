@@ -4,18 +4,7 @@ module Spree
       module Requestable
         extend ActiveSupport::Concern
 
-        included do
-          prepend_before_filter :set_access_control_headers
-        end
-
         private
-
-        def set_access_control_headers
-          headers['Access-Control-Allow-Origin'] = Ams.configuration.cors_whitelist
-          headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
-          headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token, X-Spree-Token, X-Spree-Order-Token, X-Spree-Order-Id'
-          headers['Access-Control-Max-Age'] = "1728000"
-        end
 
         # Provide a guest user if there's no
         # current api user loaded.
